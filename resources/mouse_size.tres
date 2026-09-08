@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="SkillTreeNode" format=3 uid="uid://cgr2gw4xgj17f"]
+
+[ext_resource type="Script" uid="uid://tq1bbb5ra6ca" path="res://scripts/skill_tree_node.gd" id="1_1ux3a"]
+
+[resource]
+script = ExtResource("1_1ux3a")
+node_name = "mouse_size"
+metadata/_custom_type_script = "uid://tq1bbb5ra6ca"

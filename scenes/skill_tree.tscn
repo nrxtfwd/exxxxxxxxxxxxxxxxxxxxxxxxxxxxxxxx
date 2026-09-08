@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://bqxo2n7emfs5y"]
+
+[ext_resource type="PackedScene" uid="uid://cphges72to1jk" path="res://scenes/skill_tree_button.tscn" id="1_ty3n3"]
+[ext_resource type="Script" uid="uid://bjmvdikr134cp" path="res://scenes/camera.gd" id="1_tyjg3"]
+[ext_resource type="Resource" uid="uid://mrovs1hyq1xg" path="res://resources/mouse_damage.tres" id="2_tnam6"]
+[ext_resource type="Resource" uid="uid://qis6vek267sa" path="res://resources/mouse.tres" id="3_a302t"]
+[ext_resource type="Resource" uid="uid://cnt0mufgkkw7" path="res://resources/mouse_fire_rate.tres" id="5_6awrb"]
+[ext_resource type="Resource" uid="uid://cgr2gw4xgj17f" path="res://resources/mouse_size.tres" id="5_51bdh"]
+
+[node name="skill_tree" type="Node2D" unique_id=362348957]
+
+[node name="camera" type="Camera2D" parent="." unique_id=1640040531]
+position = Vector2(1043, 323)
+script = ExtResource("1_tyjg3")
+
+[node name="mouse_damage" parent="." unique_id=586350113 instance=ExtResource("1_ty3n3")]
+offset_left = 768.0
+offset_top = 255.0
+offset_right = 896.0
+offset_bottom = 383.0
+skill_tree_node = ExtResource("2_tnam6")
+
+[node name="mouse" parent="." unique_id=61417468 instance=ExtResource("1_ty3n3")]
+offset_left = 281.0
+offset_top = 255.0
+offset_right = 409.0
+offset_bottom = 383.0
+skill_tree_node = ExtResource("3_a302t")
+
+[node name="mouse_fire_rate" parent="." unique_id=2072254604 instance=ExtResource("1_ty3n3")]
+offset_left = 764.0
+offset_top = 35.0
+offset_right = 892.0
+offset_bottom = 163.0
+skill_tree_node = ExtResource("5_6awrb")
+
+[node name="mouse_size" parent="." unique_id=440151894 instance=ExtResource("1_ty3n3")]
+offset_left = 1003.0
+offset_top = 255.0
+offset_right = 1131.0
+offset_bottom = 383.0
+skill_tree_node = ExtResource("5_51bdh")

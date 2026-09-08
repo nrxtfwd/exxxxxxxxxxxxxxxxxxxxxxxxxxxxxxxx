@@ -2,15 +2,17 @@
 
 [ext_resource type="PackedScene" uid="uid://dmugedgcra56j" path="res://scenes/soldiers/soldier.tscn" id="1_nnsk1"]
 [ext_resource type="PackedScene" uid="uid://bccvg0v331jg6" path="res://scenes/mouse.tscn" id="1_qfnet"]
-[ext_resource type="Script" uid="uid://bjmvdikr134cp" path="res://scenes/camera.gd" id="2_rwgxs"]
 [ext_resource type="TileSet" uid="uid://dv7txpj1vjr5y" path="res://env_tileset.tres" id="3_4wyf3"]
 [ext_resource type="PackedScene" uid="uid://c51voh4ojm5gl" path="res://scenes/enemies/enemy.tscn" id="4_k0juu"]
 [ext_resource type="PackedScene" uid="uid://iscrfssvflsw" path="res://scenes/encounter.tscn" id="5_71j4m"]
+[ext_resource type="Script" uid="uid://dery3fjq5vo53" path="res://scenes/money.gd" id="7_i7141"]
+[ext_resource type="Script" uid="uid://bo06uf43g7ogl" path="res://scenes/game_over.gd" id="8_4mrxx"]
 
 [node name="world" type="Node2D" unique_id=1560941921]
 
 [node name="mouse" parent="." unique_id=396475179 instance=ExtResource("1_qfnet")]
 z_index = 2
+collision_layer = 8
 
 [node name="floor" type="TileMapLayer" parent="." unique_id=796690255]
 z_index = -1
@@ -24,7 +26,6 @@ position = Vector2(15, 119)
 position = Vector2(56, -1)
 zoom = Vector2(2.5, 2.5)
 position_smoothing_enabled = true
-script = ExtResource("2_rwgxs")
 
 [node name="wall" type="TileMapLayer" parent="." unique_id=1678315708]
 z_index = 1
@@ -59,3 +60,57 @@ position = Vector2(259.84973, 61.60196)
 
 [node name="enemy8" parent="encounters/encounter" unique_id=476736308 instance=ExtResource("4_k0juu")]
 position = Vector2(280.84973, -65.39804)
+
+[node name="ui" type="CanvasLayer" parent="." unique_id=420884698]
+process_mode = 3
+
+[node name="Control" type="Control" parent="ui" unique_id=524682154]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="money" type="Label" parent="ui/Control" unique_id=493539477]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 23.0
+offset_top = -44.0
+offset_right = 63.0
+offset_bottom = -21.0
+grow_vertical = 0
+text = "$0"
+script = ExtResource("7_i7141")
+
+[node name="game_over" type="PanelContainer" parent="ui/Control" unique_id=2101687371]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_4mrxx")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ui/Control/game_over" unique_id=851369124]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="ui/Control/game_over/VBoxContainer" unique_id=1103563642]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "YOU DIED"
+
+[node name="restart" type="Button" parent="ui/Control/game_over/VBoxContainer" unique_id=38894069]
+layout_mode = 2
+text = "RESTART"
+
+[node name="upgrades" type="Button" parent="ui/Control/game_over/VBoxContainer" unique_id=1989444942]
+layout_mode = 2
+text = "UPGRADES"
+
+[connection signal="pressed" from="ui/Control/game_over/VBoxContainer/upgrades" to="ui/Control/game_over" method="_on_upgrades_pressed"]

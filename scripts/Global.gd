@@ -2,6 +2,17 @@ extends Node
 
 const DEATH_HEIGHT = -50.0
 
+var scene_manager : SceneManager
+var money := 0 :
+	set(value):
+		money = value
+		money_changed.emit()
+
+signal money_changed
+
+func change_scene(scene = null):
+	scene_manager.change_scene(scene)
+
 func damage(from, to, damage):
 	to.get_node('health_node').health -= damage
 

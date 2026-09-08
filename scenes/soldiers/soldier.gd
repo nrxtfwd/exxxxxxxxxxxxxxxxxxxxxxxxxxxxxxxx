@@ -1,15 +1,24 @@
-extends CharacterBody2D
+extends Entity
 
 @export var range := 100.0
 @export var speed := 50.0
 
 @onready var sprite = $AnimatedSprite2D
 
+signal died
+
 func _ready():
+	walk()
+
+func walk():
 	velocity = Vector2.RIGHT * speed
+
+func idle():
+	velocity = Vector2.ZERO
 
 func _physics_process(delta):
 	sprite.play('walk' if velocity.x > 0 else 'idle')
+	super(delta)
 	move_and_slide()
 	queue_redraw()
 
@@ -36,16 +45,19 @@ func get_closest_enemy():
 	return closest
 
 func _on_attack_state_timeout():
-	for encounter in get_tree().get_nodes_in_group('encounter'):
-		if encounter.active:
-			break
-		if encounter.global_position.x <= global_position.x:
-			velocity = Vector2.ZERO
-			encounter.activate()
-			break
+	pass
+	#for encounter in get_tree().get_nodes_in_group('encounter'):
+		#if encounter.active:
+			#break
+		#if encounter.global_position.x <= global_position.x:
+			#velocity = Vector2.ZERO
+			#encounter.activate()
+			#break
 
 func _on_attack_timeout():
 	var enemy = get_closest_enemy()
 	if !enemy:
+		walk()
 		return
+	idle()
 	attack(enemy)

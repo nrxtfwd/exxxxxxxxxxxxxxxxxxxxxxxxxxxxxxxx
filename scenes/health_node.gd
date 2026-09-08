@@ -11,6 +11,8 @@ class_name HealthNode
 			if health <= 0:
 					if base_self.has_signal('died'):
 							base_self.died.emit()
+					if base_self.has_method('on_died'):
+						base_self.on_died()
 					died.emit()
 					base_self.queue_free()
 

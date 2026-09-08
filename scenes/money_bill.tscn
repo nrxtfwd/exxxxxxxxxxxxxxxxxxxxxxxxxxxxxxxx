@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cmi34bqjfaf80"]
+
+[ext_resource type="Texture2D" uid="uid://d3xgp0v347lyg" path="res://assets/bill.png" id="1_d1hs1"]
+[ext_resource type="Script" uid="uid://bgjkyoo6b5gcw" path="res://scenes/money_bill.gd" id="1_ddpno"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1jdq0"]
+
+[node name="money_bill" type="Area2D" unique_id=1929953004]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("1_ddpno")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1057839319]
+texture = ExtResource("1_d1hs1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1701629522]
+shape = SubResource("CircleShape2D_1jdq0")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

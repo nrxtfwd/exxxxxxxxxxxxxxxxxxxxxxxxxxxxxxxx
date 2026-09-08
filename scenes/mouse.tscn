@@ -6,7 +6,46 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d077n"]
 size = Vector2(30, 30)
 
+[sub_resource type="Animation" id="Animation_xa71f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 2)]
+}
+
+[sub_resource type="Animation" id="Animation_ouscy"]
+resource_name = "hit"
+length = 0.19999999999999998
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2.5, 2.5), Vector2(2, 2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xa71f"]
+_data = {
+&"RESET": SubResource("Animation_xa71f"),
+&"hit": SubResource("Animation_ouscy")
+}
+
 [node name="mouse" type="Area2D" unique_id=396475179]
+collision_layer = 0
+collision_mask = 2
 script = ExtResource("1_ouscy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1227013369]
@@ -15,3 +54,12 @@ shape = SubResource("RectangleShape2D_d077n")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=98957619]
 scale = Vector2(2, 2)
 texture = ExtResource("1_5v7j2")
+
+[node name="Timer" type="Timer" parent="." unique_id=1769320849]
+wait_time = 0.5
+autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1029193272]
+libraries/ = SubResource("AnimationLibrary_xa71f")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

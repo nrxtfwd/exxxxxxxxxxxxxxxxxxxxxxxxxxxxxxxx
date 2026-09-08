@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://cphges72to1jk"]
+
+[ext_resource type="Script" uid="uid://84hvw0k0cykg" path="res://scenes/skill_tree_button.gd" id="1_hpe1a"]
+[ext_resource type="Texture2D" uid="uid://c2uf0guly825h" path="res://icon.svg" id="1_qn3u2"]
+
+[node name="skill_tree_button" type="TextureButton" unique_id=586350113]
+offset_right = 8.0
+offset_bottom = 8.0
+texture_normal = ExtResource("1_qn3u2")
+script = ExtResource("1_hpe1a")
+
+[node name="Label" type="Label" parent="." unique_id=6773449]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Skill tree button"
+horizontal_alignment = 1
+vertical_alignment = 1

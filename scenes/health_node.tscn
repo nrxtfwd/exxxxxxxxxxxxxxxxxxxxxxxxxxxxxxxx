@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://byvcwky71jn5k"]
+
+[ext_resource type="Script" uid="uid://bolm8xxapvc4h" path="res://scenes/health_node.gd" id="1_vb47a"]
+
+[node name="health_node" type="Node2D" unique_id=429168566]
+script = ExtResource("1_vb47a")
+
+[node name="bar" type="ProgressBar" parent="." unique_id=165372346]
+offset_left = -15.0
+offset_top = 8.0
+offset_right = 14.0
+offset_bottom = 14.0
+max_value = 1.0
+value = 0.2
+show_percentage = false

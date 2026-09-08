@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var range := 200.0
+@export var range := 100.0
 @export var speed := 50.0
 
 @onready var sprite = $AnimatedSprite2D
@@ -19,22 +19,33 @@ func _draw():
 	)
 
 func attack(enemy):
+	enemy.kb += global_position.direction_to(
+		enemy.global_position
+	) * 50.0
+	Global.damage(self,enemy,5.0)
 	$gun.look_at(enemy.global_position)
 
 func get_closest_enemy():
 	var closest
-	var closest_dist = INF
+	var closest_dist = range
 	for enemy in get_tree().get_nodes_in_group('enemy'):
 		var dist = global_position.distance_to(enemy.global_position)
 		if dist < closest_dist:
 			closest_dist = dist
 			closest = enemy 
+	return closest
 
 func _on_attack_state_timeout():
-	var closest = get_closest_enemy()
-	if closest:
-		velocity = Vector2.ZERO
-		attack(closest)
+	for encounter in get_tree().get_nodes_in_group('encounter'):
+		if encounter.active:
+			break
+		if encounter.global_position.x <= global_position.x:
+			velocity = Vector2.ZERO
+			encounter.activate()
+			break
 
 func _on_attack_timeout():
-	attack(get_closest_enemy())
+	var enemy = get_closest_enemy()
+	if !enemy:
+		return
+	attack(enemy)

@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bccvg0v331jg6"]
+
+[ext_resource type="Texture2D" uid="uid://p7gl20cjdeiq" path="res://assets/mouse.png" id="1_5v7j2"]
+[ext_resource type="Script" uid="uid://5t633bnuv20g" path="res://scenes/mouse.gd" id="1_ouscy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d077n"]
+size = Vector2(30, 30)
+
+[node name="mouse" type="Area2D" unique_id=396475179]
+script = ExtResource("1_ouscy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1227013369]
+shape = SubResource("RectangleShape2D_d077n")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=98957619]
+scale = Vector2(2, 2)
+texture = ExtResource("1_5v7j2")

@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://c51voh4ojm5gl"]
 
 [ext_resource type="Texture2D" uid="uid://cb573gnfqwfqy" path="res://assets/Bat_Sprite_Sheet (1).png" id="1_6xk8f"]
+[ext_resource type="Script" uid="uid://totisqakjojk" path="res://scenes/enemies/enemy.gd" id="1_8e3ao"]
+[ext_resource type="PackedScene" uid="uid://byvcwky71jn5k" path="res://scenes/health_node.tscn" id="3_38ino"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8e3ao"]
 atlas = ExtResource("1_6xk8f")
@@ -48,7 +50,13 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_ulek8"]
 radius = 6.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_38ino"]
+radius = 8.0
+
 [node name="enemy" type="CharacterBody2D" unique_id=785187524 groups=["enemy"]]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_8e3ao")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=353427351]
 sprite_frames = SubResource("SpriteFrames_ulek8")
@@ -59,3 +67,20 @@ frame_progress = 0.0083952295
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=36228944]
 position = Vector2(-1, -4)
 shape = SubResource("CircleShape2D_ulek8")
+
+[node name="health_node" parent="." unique_id=429168566 instance=ExtResource("3_38ino")]
+max_health = 20.0
+
+[node name="hitbox" type="Area2D" parent="." unique_id=239167609]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="hitbox" unique_id=584212562]
+position = Vector2(-1, -4)
+shape = SubResource("CircleShape2D_38ino")
+
+[node name="Timer" type="Timer" parent="." unique_id=480363130]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

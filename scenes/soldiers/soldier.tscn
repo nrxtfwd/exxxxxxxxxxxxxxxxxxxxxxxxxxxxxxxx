@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://crkki1nsvk1o8" path="res://assets/hurt.png" id="2_n6jhf"]
 [ext_resource type="Texture2D" uid="uid://b15eh0yhdv17k" path="res://assets/idle.png" id="3_8gymt"]
 [ext_resource type="Texture2D" uid="uid://fncy1qyyiej2" path="res://assets/walk.png" id="4_0m3ua"]
+[ext_resource type="Texture2D" uid="uid://cog81msqqnknv" path="res://assets/gun.png" id="6_8gymt"]
+[ext_resource type="PackedScene" uid="uid://byvcwky71jn5k" path="res://scenes/health_node.tscn" id="7_0m3ua"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cij1v"]
 atlas = ExtResource("1_ihnlc")
@@ -110,6 +112,7 @@ animations = [{
 radius = 7.071068
 
 [node name="soldier" type="CharacterBody2D" unique_id=1378474450 groups=["soldier"]]
+collision_layer = 4
 script = ExtResource("1_n6jhf")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1309569464]
@@ -127,6 +130,12 @@ autostart = true
 [node name="attack" type="Timer" parent="." unique_id=1697338553]
 wait_time = 0.5
 autostart = true
+
+[node name="gun" type="Sprite2D" parent="." unique_id=1557419153]
+position = Vector2(10, 0)
+texture = ExtResource("6_8gymt")
+
+[node name="health_node" parent="." unique_id=429168566 instance=ExtResource("7_0m3ua")]
 
 [connection signal="timeout" from="attack_state" to="." method="_on_attack_state_timeout"]
 [connection signal="timeout" from="attack" to="." method="_on_attack_timeout"]
